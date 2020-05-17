@@ -23,7 +23,7 @@ cargo install-update --all
 
 echo Updating Alacritty...
 cd alacritty
-check_git cargo install --path ./alacritty
+check_git cargo install --path ./alacritty --force
 cd ..
 
 echo Updating rust-analyzer...
