@@ -1,4 +1,4 @@
-alias dotf='--local status.showUntrackedFiles no'
+alias dotf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 alias ls='ls -lhX --color=auto --group-directories-first'
 alias ip='ip -c'
