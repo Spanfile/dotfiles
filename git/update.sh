@@ -1,47 +1,41 @@
 #!/bin/bash
 
+# run each build task with a certain nice value
+NICENESS=10
+
 check_git () {
+	NAME=$1
+	TOOLCHAIN=$2
+	COMMAND=$3
+
+	cd $NAME
+
 	git remote update > /dev/null
 	LOCAL=$(git rev-parse @)
 	REMOTE=$(git rev-parse @{u})
 
 	if [ $LOCAL != $REMOTE ]; then
-		echo "Out-of-date. Changes:"
+		echo "$NAME is out-of-date. Changes:"
 		git log --decorate --oneline @{u} ..HEAD
 		git merge @{u}
-		$@
+
+		echo "Build $NAME on $TOOLCHAIN: $COMMAND"
+		rustup default $TOOLCHAIN > /dev/null
+		nice -n $NICENESS $COMMAND
 	else
-		echo "Up-to-date"
+		echo "$NAME is up-to-date"
 	fi
+
+	cd ..
 }
 
 echo Updating Rust...
 rustup update
 
 echo Updating Rust tools...
-cargo install-update --all
+nice -n $NICENESS cargo install-update --all
 
-echo Updating Alacritty...
-cd alacritty
-check_git cargo install --path ./alacritty --force
-cd ..
+check_git alacritty stable "cargo install --path ./alacritty --force"
+check_git rust-analyzer nightly "cargo xtask install"
 
-echo Updating rust-analyzer...
-cd rust-analyzer
-check_git cargo xtask install
-cd ..
-
-#echo Updating coreutils
-#cd coreutils
-#check_git cargo install --path .
-#cd ..
-
-#echo Updating spotifyd...
-#cd spotifyd
 #check_git cargo build --release --no-default-features --features "pulseaudio_backend"
-#cd ..
-
-#echo Updating spotify-tui...
-#cd spotify-tui
-#check_git cargo build --release
-#cd ..
