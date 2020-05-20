@@ -17,7 +17,7 @@ check_git () {
 	if [ $LOCAL != $REMOTE ]; then
 		echo "$NAME is out-of-date. Changes:"
 		git log --decorate --oneline @{u} ..HEAD
-		git merge @{u}
+		git merge @{u} > /dev/null
 
 		echo "Build $NAME on $TOOLCHAIN: $COMMAND"
 		rustup default $TOOLCHAIN > /dev/null
