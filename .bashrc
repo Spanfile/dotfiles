@@ -42,6 +42,7 @@ alias ls='ls -lhX --color=auto --group-directories-first'
 alias ip='ip -c'
 alias rsync='rsync --info=progress2'
 alias nvtop='nvtop -p'
+alias xclip='xclip -selection c'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
