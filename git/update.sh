@@ -30,7 +30,7 @@ check_git () {
 }
 
 echo Updating Rust...
-rustup update 2>&1 | grep changed
+rustup update
 
 echo Updating Rust tools...
 nice -n $NICENESS cargo install-update --all
