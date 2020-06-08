@@ -35,7 +35,7 @@ rustup update
 echo Updating Rust tools...
 nice -n $NICENESS cargo install-update --all
 
-check_git alacritty stable "cargo install --path ./alacritty --force"
+check_git alacritty nightly "cargo install --path ./alacritty --force"
 check_git rust-analyzer nightly "cargo xtask install"
 
 #check_git cargo build --release --no-default-features --features "pulseaudio_backend"
