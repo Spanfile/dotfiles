@@ -29,12 +29,6 @@ check_git () {
 	cd ..
 }
 
-echo Updating Rust...
-rustup update
-
-echo Updating Rust tools...
-nice -n $NICENESS cargo install-update --all
-
 check_git alacritty nightly "cargo install --path ./alacritty --force"
 check_git rust-analyzer nightly "cargo xtask install"
 
