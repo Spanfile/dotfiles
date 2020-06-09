@@ -52,6 +52,5 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 function cl {
-	cd "$@"
-	ls
+	cd "$@" && ls
 }
