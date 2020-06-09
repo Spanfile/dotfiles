@@ -2,6 +2,18 @@
 
 # run each build task with a certain nice value
 NICENESS=10
+FORCE=0
+
+while getopts ":f:n:" opt; do
+	case ${opt} in
+		f )
+			FORCE=1
+			;;
+		n )
+			NICENESS=$OPTARG
+			;;
+	esac
+done
 
 check_git () {
 	NAME=$1
@@ -14,7 +26,11 @@ check_git () {
 	LOCAL=$(git rev-parse @)
 	REMOTE=$(git rev-parse @{u})
 
-	if [ $LOCAL != $REMOTE ]; then
+	if [ $FORCE == 1 ]; then
+		echo "Forcing build of $NAME"
+		rustup default $TOOLCHAIN > /dev/null
+		nice -n $NICENESS $COMMAND
+	elif [ $LOCAL != $REMOTE ]; then
 		echo "$NAME is out-of-date. Changes:"
 		git log --decorate --oneline @{u} ..HEAD
 		git merge @{u} > /dev/null
