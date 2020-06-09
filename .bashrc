@@ -44,14 +44,14 @@ alias rsync='rsync --info=progress2'
 alias nvtop='nvtop -p'
 alias xclip='xclip -selection c'
 
-alias cdl='cdl'
 alias ..='cd ..'
+alias .l='cl ..'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-function cdl {
+function cl {
 	cd "$@"
 	ls
 }
