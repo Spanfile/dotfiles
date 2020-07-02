@@ -3,14 +3,18 @@
 # run each build task with a certain nice value
 NICENESS=10
 FORCE=0
+CLEAN=0
 
-while getopts ":f:n:" opt; do
+while getopts ":fcn:" opt; do
 	case ${opt} in
 		f )
 			FORCE=1
 			;;
 		n )
 			NICENESS=$OPTARG
+			;;
+		c )
+			CLEAN=1
 			;;
 	esac
 done
@@ -19,6 +23,7 @@ check_git () {
 	NAME=$1
 	TOOLCHAIN=$2
 	COMMAND=$3
+	CLEAN_COMMAND=$4
 
 	cd $NAME
 
@@ -28,6 +33,11 @@ check_git () {
 
 	if [ $FORCE == 1 ]; then
 		echo "Forcing build of $NAME"
+
+		if [ $CLEAN == 1 ]; then
+			echo "Cleaning before build"
+			$CLEAN_COMMAND
+		fi
 		rustup default $TOOLCHAIN > /dev/null
 		nice -n $NICENESS $COMMAND
 	elif [ $LOCAL != $REMOTE ]; then
@@ -36,6 +46,11 @@ check_git () {
 		git merge @{u} > /dev/null
 
 		echo "Build $NAME on $TOOLCHAIN: $COMMAND"
+
+		if [ $CLEAN == 1 ]; then
+                        echo "Cleaning before build"
+                        $CLEAN_COMMAND
+                fi
 		rustup default $TOOLCHAIN > /dev/null
 		nice -n $NICENESS $COMMAND
 	else
@@ -45,7 +60,7 @@ check_git () {
 	cd ..
 }
 
-check_git alacritty nightly "cargo install --path ./alacritty --force"
-check_git rust-analyzer nightly "cargo xtask install"
+check_git alacritty nightly "cargo install --path ./alacritty --force" "cargo clean"
+check_git rust-analyzer nightly "cargo xtask install" "cargo clean"
 
 #check_git cargo build --release --no-default-features --features "pulseaudio_backend"
