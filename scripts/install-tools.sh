@@ -1,6 +1,6 @@
 echo -e "\nInstalling Rust tools...\n"
 
-for p in cache expand tree udeps update
+for p in cache expand tree udeps update watch tarpaulin count bloat
 do
 	cargo install cargo-$p
 done
