@@ -69,6 +69,6 @@ check_git bandwhich nightly "cargo install --path . --force" "cargo clean"
 check_git dust nightly "cargo install --path . --force" "cargo clean"
 check_git fd nightly "cargo install --path . --force" "cargo clean"
 check_git grex nightly "cargo install --path . --force" "cargo clean"
-check_git hyperfine "cargo install --path . --force" "cargo clean"
+check_git hyperfine nightly "cargo install --path . --force" "cargo clean"
 
 #check_git cargo build --release --no-default-features --features "pulseaudio_backend"
