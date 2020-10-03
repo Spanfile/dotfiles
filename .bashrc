@@ -43,6 +43,7 @@ alias ip='ip -c'
 alias rsync='rsync --info=progress2'
 alias nvtop='nvtop -p'
 alias xclip='xclip -selection c'
+alias dust='dust -r'
 
 alias ..='cd ..'
 alias .l='cl ..'
