@@ -64,7 +64,7 @@ check_git () {
 }
 
 check_git alacritty nightly "cargo install --path ./alacritty --force" "cargo clean"
-check_git rust-analyzer nightly "cargo xtask install" "cargo clean"
+#check_git rust-analyzer nightly "cargo xtask install" "cargo clean"
 check_git bandwhich nightly "cargo install --path . --force" "cargo clean"
 check_git dust nightly "cargo install --path . --force" "cargo clean"
 check_git fd nightly "cargo install --path . --force" "cargo clean"

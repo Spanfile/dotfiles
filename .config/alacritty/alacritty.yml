@@ -214,10 +214,10 @@ colors:
   # Normal colors
   normal:
     black:   '#000000'
-    red:     '#ff0000'
+    red:     '#aa0000'
     green:   '#00aa00'
     yellow:  '#aa5500'
-    blue:    '#0000ff'
+    blue:    '#3333dd'
     magenta: '#aa00aa'
     cyan:    '#00aaaa'
     white:   '#aaaaaa'
