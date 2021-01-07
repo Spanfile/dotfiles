@@ -1,3 +1,5 @@
 [user]
 	email = spansdev@gmail.com
 	name = Spanfile
+[pull]
+	rebase = false

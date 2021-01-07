@@ -63,13 +63,8 @@ check_git () {
 	cd ..
 }
 
-check_git alacritty nightly "cargo install --path ./alacritty --force" "cargo clean"
-#check_git rust-analyzer nightly "cargo xtask install" "cargo clean"
-check_git bandwhich nightly "cargo install --path . --force" "cargo clean"
-check_git dust nightly "cargo install --path . --force" "cargo clean"
-check_git fd nightly "cargo install --path . --force" "cargo clean"
-check_git grex nightly "cargo install --path . --force" "cargo clean"
-check_git hyperfine nightly "cargo install --path . --force" "cargo clean"
+check_git alacritty stable "cargo install --path ./alacritty --force" "cargo clean"
+check_git rust-analyzer nightly "cargo xtask install" "cargo clean"
 check_git htop nightly "sh build.sh" "true"
 
 #check_git cargo build --release --no-default-features --features "pulseaudio_backend"
