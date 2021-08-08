@@ -44,6 +44,8 @@ alias rsync='rsync --info=progress2'
 alias nvtop='nvtop -p'
 alias xclip='xclip -selection c'
 alias dust='dust -r'
+alias mv='mv -i'
+alias rm='rm -i'
 
 alias ..='cd ..'
 alias .l='cl ..'
@@ -55,3 +57,4 @@ alias egrep='egrep --color=auto'
 function cl {
 	cd "$@" && ls
 }
+

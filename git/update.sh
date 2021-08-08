@@ -63,7 +63,7 @@ check_git () {
 	cd ..
 }
 
-check_git alacritty stable "cargo install --path ./alacritty --force" "cargo clean"
+check_git alacritty nightly "cargo install --path ./alacritty --force" "cargo clean"
 check_git rust-analyzer nightly "cargo xtask install" "cargo clean"
 check_git htop nightly "sh build.sh" "true"
 
